@@ -3,6 +3,10 @@
   <h2> New Posts </h2>
 
     <%= form_for :post, url: posts_path do |f| %>
+
+      <% @post.errors.full_messages.each do |msg| %>
+          <li><%= msg %> </li>
+      <% end %>
       <p>
           <%= f.label :title %> <br>
           <%= f.text_field :title %> <br>
