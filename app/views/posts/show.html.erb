@@ -8,8 +8,13 @@
   </p>
 
   <p class="time">
-     Created <%= time_ago_in_words(@post.created_at) %> ago
-  </p>
+     Created <%= time_ago_in_words(@post.created_at) %> ago </p>
+
+      <p>
+        <%= link_to 'Edit', edit_post_path %> |
+        <%= link_to 'Delete', post_path(@post), method: :delete, data: { confirm: 'Are you sure?' } %>
+      </p>
+
 
 
 </div>
