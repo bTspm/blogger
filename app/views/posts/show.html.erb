@@ -1,20 +1,31 @@
 <div id="page_wrapper">
-  <h3 class="title" >
+  <h2 class="title" >
     <%= @post.title %>
-  </h3>
+  </h2>
 
-  <p class="body">
-    <%= @post.body %>
-  </p>
 
-  <p class="time">
-     Created <%= time_ago_in_words(@post.created_at) %> ago </p>
+<h6>  <p class="time">
+     Created <%= time_ago_in_words(@post.created_at) %> ago |
 
-      <p>
+
+
         <%= link_to 'Edit', edit_post_path %> |
         <%= link_to 'Delete', post_path(@post), method: :delete, data: { confirm: 'Are you sure?' } %>
-      </p>
+      </p> </h6>
 
 
+  <h5><p class="body">
+    <%= @post.body %>
+  </p></h5>
+
+<br>
+
+
+  <div id="comments">
+    <h2><%= @post.comments.count %> Comments </h2><hr>
+    <%= render @post.comments %> <hr>
+
+    <h3>Add a Comment </h3>
+    <%= render 'comments/form' %>
 
 </div>
