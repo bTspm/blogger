@@ -5,7 +5,7 @@
 
 
 <h6>  <p class="time">
-     Created by <%= @post.user.email %> <%= time_ago_in_words(@post.created_at) %> ago
+     Created by <%= time_ago_in_words(@post.created_at) %> ago
 
 <% if @post.user == current_user %>
 
