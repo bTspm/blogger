@@ -5,11 +5,11 @@
 
 
 <h6>  <p class="time">
-     Created <%= time_ago_in_words(@post.created_at) %> ago |
+     Created by <%= @post.user.email %> <%= time_ago_in_words(@post.created_at) %> ago
 
-<% if user_signed_in? %>
+<% if @post.user == current_user %>
 
-        <%= link_to 'Edit', edit_post_path %> |
+       | <%= link_to 'Edit', edit_post_path %> |
         <%= link_to 'Delete', post_path(@post), method: :delete, data: { confirm: 'Are you sure?' } %>
       </p> </h6>
 

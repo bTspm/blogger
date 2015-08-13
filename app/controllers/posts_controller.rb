@@ -7,13 +7,13 @@ class PostsController < ApplicationController
   end
 
   def new
-    @post = Post.new
+    @post = current_user.posts.build
   end
 
   def create
-    @post = Post.new(post_params)
+    @post = current_user.posts.build(post_params)
     if @post.save
-      redirect_to @post
+      redirect_to @post, notice: "Post Created Successfully"
     else
       render 'new'
     end
@@ -25,6 +25,7 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    redirect_to @post, notice: "Successfully Edited"
   end
 
   def update
@@ -41,7 +42,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.destroy
 
-    redirect_to root_path
+    redirect_to root_path, notice: "DeleTed Successfully"
   end
 
   private
@@ -50,5 +51,9 @@ class PostsController < ApplicationController
     params.require(:post).permit(:title, :body)
   end
 
+  def correct_user
+    @post = current_user.posts.find_by(id: params[:id])
+    redirect_to root_path, notice: "Not Authorized" if @post.nil?
+  end
 
 end
