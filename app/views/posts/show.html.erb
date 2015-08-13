@@ -7,7 +7,7 @@
 <h6>  <p class="time">
      Created by <%= time_ago_in_words(@post.created_at) %> ago
 
-
+<% if @post.user == current_user %>
 
        | <%= link_to 'Edit', edit_post_path %> |
         <%= link_to 'Delete', post_path(@post), method: :delete, data: { confirm: 'Are you sure?' } %>
